@@ -22,6 +22,20 @@ body {
   transform: translate(-50%, -50%);
   opacity: 0.5;
   animation: sphere-grow 1s ease;
+  transition: top 1s ease;
+}
+
+.sphere.--hidden {
+  opacity: 0;
+}
+
+.sphere.--thinking, .sphere.--generating {
+  top: -100px;
+}
+
+.sphere.--generating {
+  background-color: red;
+  opacity: 1;
 }
 
 @keyframes sphere-grow {
@@ -41,4 +55,19 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;     /* Firefox */
+}
+
+.--inactive {
+  transform: translateX(-20%);
+  opacity: 0;
+}
+
+.--active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.--hidden {
+  transform: translateY(-50%);
+  opacity: 0;
 }

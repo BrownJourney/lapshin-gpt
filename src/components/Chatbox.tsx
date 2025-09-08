@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 
 import ResizableTextarea from "./ResizableTextarea"
 
-export default function Chatbox() {
+export default function Chatbox({ sendPromt }: { sendPromt: any }) {
   const [text, setText] = useState('');
   const outerRef = useRef<HTMLDivElement | null>(null);   // animated wrapper
   const innerRef = useRef<HTMLDivElement | null>(null);   // auto-sized content
@@ -51,9 +51,9 @@ export default function Chatbox() {
     return () => ro.disconnect();
   }, []);
 
-  const sendPromt = async () => {
+  const promtWrapper = () => {
+    sendPromt(text)
     setText("")
-    console.log("Promt sent!")
   }
 
   return (
@@ -64,7 +64,7 @@ export default function Chatbox() {
         onChange={(e : React.ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)}
       />
       <div className="absolute bottom-2 right-2 flex flex-row gap-2">
-          <div className="transition cursor-pointer bg-[url('../../public/send.svg')] opacity-50 rounded-full p-6 bg-center bg-no-repeat bg-size-[20px] hover:bg-[#474747] hover:opacity-100" onClick={sendPromt}></div>
+          <div className={`transition duration-200 cursor-pointer bg-[url('../../public/send.svg')] opacity-50 rounded-full p-6 bg-center bg-no-repeat bg-size-[20px] hover:bg-[#474747] hover:opacity-100 ${text.length > 0 ? "--active" : "--inactive"}`} onClick={promtWrapper}></div>
       </div>
     </div>
   )
