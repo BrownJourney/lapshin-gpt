@@ -35,9 +35,9 @@ body {
 
 .sphere.--generating {
   background-color: rgb(0, 76, 190);
-  opacity: 0.5;
+  opacity: 0;
 
-  animation: sphere-pulse 2s ease infinite;
+  animation: sphere-pulse 2s ease infinite 1s;
 }
 
 @keyframes sphere-grow {
@@ -87,6 +87,6 @@ body {
 }
 
 .--hidden {
-  transform: translateY(-50%);
+  transform: translateY(-200%);
   opacity: 0;
 }
