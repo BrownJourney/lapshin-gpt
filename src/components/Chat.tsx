@@ -1,33 +1,23 @@
 'use client';
 
+import { useState } from "react";
+
 import Chatbox from "./Chatbox"
-import GuidedPromt from "./GuidedPromt"
+import ChatHistory from "./ChatHistory";
+
+import { ChatMessage } from "@/types";
 
 export default function Chat({ setInitialized }: { setInitialized: any }) {
+  const [history, setHistory] = useState<ChatMessage[]>([]);
+
   const sendPromt = (promtText: string) => {
-    setInitialized(true)
-  }
+    setInitialized(true);
+  };
 
   return (
     <div className="flex flex-col items-center justify-between h-screen p-10 z-2">
-      <div className="flex flex-col">
-
-      </div>
-      <div className="flex flex-col gap-5">
-        <div className="flex flex-col gap-2">
-          <span className="text-sm uppercase opacity-50 font-medium">recommended promts</span>
-
-          <div className="flex flex-row gap-2">
-            <GuidedPromt text="General information" />
-            <GuidedPromt text="Projects" />
-            <GuidedPromt text="Achievements" />
-          </div>
-        </div>
-
-        <Chatbox sendPromt={sendPromt} />
-
-        <span className="text-sm text-center font-normal opacity-50">LapshinGPT can’t make mistakes. All information is correct</span>
-      </div>
+      <ChatHistory history={history} setHistory={setHistory} />
+      <Chatbox sendPromt={sendPromt} />
     </div>
   )
 }

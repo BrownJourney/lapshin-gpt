@@ -17,7 +17,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="absolute w-screen h-screen top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 blur-3xl">
+      <div className="absolute w-screen h-screen top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none">
         <div className={`sphere ${initialized ? "--thinking" : ""}`}></div>
         <div className={`sphere --invalid ${initialized ? "--generating" : ""}`}></div>
       </div>
