@@ -5,6 +5,10 @@
   --color-foreground: var(--foreground);
 }
 
+:root {
+  --sphere-color: #004cbe;
+}
+
 body {
   background: #252525;
   color: #FFF;
@@ -34,7 +38,7 @@ body {
 }
 
 .sphere.--generating {
-  background-color: rgb(0, 76, 190);
+  background-color: var(--sphere-color);
   opacity: 0;
 
   animation: sphere-pulse 2s ease infinite 1s;
@@ -71,6 +75,7 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
 .scrollbar-hide {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;     /* Firefox */
@@ -79,14 +84,77 @@ body {
 .--inactive {
   transform: translateX(-20%);
   opacity: 0;
+  pointer-events: none;
 }
 
 .--active {
   transform: translateX(0);
   opacity: 1;
+  pointer-events: all;
 }
 
 .--hidden {
   transform: translateY(-200%);
   opacity: 0;
+}
+
+.--assistant {
+  background: none;
+  border: none;
+  opacity: 1;
+  padding-left: 0;
+}
+
+.message {
+  animation: message-appear 0.5s ease;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+@keyframes message-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loader {
+  width: 20px;
+  aspect-ratio: 1;
+  display: grid;
+  opacity: 0;
+  transform: translateX(-10%);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.loader::before,
+.loader::after {    
+  content:"";
+  grid-area: 1/1;
+  --c:no-repeat radial-gradient(farthest-side, #2491d9 92%,#0000);
+  background: 
+    var(--c) 50%  0, 
+    var(--c) 50%  100%, 
+    var(--c) 100% 50%, 
+    var(--c) 0    50%;
+  background-size: 4px 4px;
+  animation: l12 1s infinite;
+}
+.loader::before {
+  margin: 4px;
+  background-size: 3px 3px;
+  animation-timing-function: linear;
+}
+
+.loader.--loading {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@keyframes l12 { 
+  100%{transform: rotate(.5turn)}
 }

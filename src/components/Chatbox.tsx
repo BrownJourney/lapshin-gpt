@@ -59,7 +59,7 @@ export default function Chatbox({ sendPromt }: { sendPromt: any }) {
 
   const recommendedPromts = [
     {
-      name: "General Information",
+      name: "General information",
       text: "Tell me about yourself",
     },
     {
@@ -70,10 +70,14 @@ export default function Chatbox({ sendPromt }: { sendPromt: any }) {
       name: "Achievements",
       text: "Let me know about your achievements",
     },
+    {
+      name: "Social links",
+      text: "What about your social links?",
+    },
   ]
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 w-full">
       <div className="flex flex-col gap-2">
         <span className="text-sm uppercase opacity-50 font-medium">recommended promts</span>
 
