@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import ResizableTextarea from "./ResizableTextarea"
 import GuidedPromt from "./GuidedPromt"
 
-export default function Chatbox({ sendPromt }: { sendPromt: any }) {
+export default function Chatbox({ sendPromt, generating }: { sendPromt: any, generating: boolean }) {
   const [text, setText] = useState('');
   const outerRef = useRef<HTMLDivElement | null>(null);   // animated wrapper
   const innerRef = useRef<HTMLDivElement | null>(null);   // auto-sized content
@@ -53,9 +53,10 @@ export default function Chatbox({ sendPromt }: { sendPromt: any }) {
   }, []);
 
   const promtWrapper = () => {
-    sendPromt(text)
-    setText("")
-  }
+    if (generating) return;
+    sendPromt(text);
+    setText("");
+  };
 
   const recommendedPromts = [
     {
@@ -74,17 +75,17 @@ export default function Chatbox({ sendPromt }: { sendPromt: any }) {
       name: "Social links",
       text: "What about your social links?",
     },
-  ]
+  ];
 
   return (
     <div className="flex flex-col gap-5 w-full">
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 pt-5">
         <span className="text-sm uppercase opacity-50 font-medium">recommended promts</span>
 
         <div className="flex flex-row gap-2">
           {recommendedPromts.map(promt => {
             return (
-              <GuidedPromt key={promt.name} text={promt.name} promt={promt.text} setText={setText} />
+              <GuidedPromt key={promt.name} text={promt.name} promt={promt.text} sendPromt={sendPromt} />
             )
           })}
         </div>

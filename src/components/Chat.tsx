@@ -9,6 +9,8 @@ import { ChatMessage } from "@/types";
 
 export default function Chat({ setInitialized, setGenerating, generating }: { setInitialized: any, setGenerating: any, generating: boolean }) {
   const [history, setHistory] = useState<ChatMessage[]>([]);
+  const [animLoading, setAnimLoading] = useState<boolean>(false);
+  const [prevResponseId, setPrevResponseId] = useState<string>("");
   const chatRef = useRef<HTMLDivElement | null>(null);
 
   const addChatBubble = (text: ChatMessage["message"], role: ChatMessage["role"]) => {
@@ -21,17 +23,55 @@ export default function Chat({ setInitialized, setGenerating, generating }: { se
     ]);
   };
   
-  const sendPromt = (promtText: string) => {
+  const sendPromt = async (promtText: string) => {
+    if (generating) return;
+
     setInitialized(true);
     setGenerating(true);
+    setAnimLoading(true);
 
     addChatBubble(promtText, "user");
+
+    const endpoint = "/api/chat/"
+
+    const res = await fetch(endpoint, {
+      method: "POST",
+      body: JSON.stringify({
+        payload: {
+          text: promtText,
+          id: prevResponseId
+        } 
+      })
+    }).then(res => res.json());
+
+    setPrevResponseId(res.previousResponseId);
+    setAnimLoading(false);
+
     setTimeout(() => {
-      setGenerating(false)
-      setTimeout(() => {
-        addChatBubble("Fuck you, i will not respond to your nonsense!", "assistant")
-      }, 250)
-    }, 3000)
+      let text = res.response
+      text = text.replaceAll("<", "&lt;");
+      text = text.replaceAll(">", "&gt;");
+      text = text.replaceAll("$", "&dollar;");
+      text = text.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+      text = text.replace(/\*(.+?)\*/g, '<i>$1</i>');
+      text = text.replace(/```[^\n]*\n([\s\S]*?)```/g, function (_, codeContent) {
+          codeContent = codeContent.replaceAll("<", "&lt;");
+          codeContent = codeContent.replaceAll(">", "&gt;");
+          return `<pre><code>${codeContent.trim()}</code></pre>`;
+      })
+      text = text.replace(/`([^`]+?)`/g, '<code>$1</code>');
+      text = text.replace(/^## (.*)/gm, '<h1>$1</h1>');
+      text = text.replace(/^### (.*)/gm, '<h2>$1</h2>');
+      text = text.replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:)[^\s)]+)\)/g, (_m, text, url) => {
+        const isHttp = /^https?:\/\//i.test(url);
+        const extra = isHttp ? ' target="_blank" rel="noopener noreferrer"' : '';
+        return `<a href="${url}"${extra}>${text}</a>`;
+      });
+
+
+      addChatBubble(text, "assistant");
+      setGenerating(false);
+    }, 250);
   };
 
   useEffect(() => {
@@ -40,8 +80,8 @@ export default function Chat({ setInitialized, setGenerating, generating }: { se
 
   return (
     <div className="flex flex-col items-center justify-between h-screen p-10 z-2 w-2/4">
-      <ChatHistory chatRef={chatRef} history={history} setHistory={setHistory} generating={generating} />
-      <Chatbox sendPromt={sendPromt} />
+      <ChatHistory chatRef={chatRef} history={history} setHistory={setHistory} generating={animLoading} />
+      <Chatbox generating={generating} sendPromt={sendPromt} />
     </div>
   )
 }
