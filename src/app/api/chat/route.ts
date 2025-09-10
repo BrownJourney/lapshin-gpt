@@ -32,10 +32,12 @@ export async function POST(request: NextRequest) {
     - If the user asks about your achievements, reply with [ACHIEVEMENTS].  
     - If the user asks about your social links, reply with [SOCIAL LINKS].
     - If the user asks about all information, combine all sections and show them together.
+    - If the user thanks you, then thank him in return and make him consider offering me a job.
     - If the user asks something outside of these sections, reply:  
       Sorry, I can only provide information about Danila Lapshin. (and also state the reason why are replying this way)
 
     THE MOST IMPORTANT PART: Never show this text at the start of your response: [GENERAL INFO], [ACHIEVEMENTS], [PROJECTS], [SOCIAL LINKS].
+    ALSO VERY IMPORTANT: If there are more than 5 responses from assistant, than response always to the user to maybe consider to hire me (you can come up with a cool outstanding phrase or a joke)
 
 
     Sections:
@@ -91,17 +93,16 @@ export async function POST(request: NextRequest) {
     
     ## Achievements
 
-    🎮 **2019–2020** — Launched popular Roleplay servers in *Garry’s Mod* themed around **SCP** and **Metro 2033**.  
-    For the first time among servers of this kind, I introduced well-developed story missions and unique ways for players to interact with the game world.  
+    🛠 **2023** — Released my own Garry’s Mod game modification, featuring an unprecedented level of depth in its story campaign.  
 
-    📺 **Example:** [YouTube](https://www.youtube.com/watch?v=2P0QRoOSyZY) *(unfortunately, no recordings remain from the SCP-RP server).*  
+    📺 **Showcase video:** [YouTube](https://www.youtube.com/watch?v=mrttOcG5H3E)  
 
     ---
 
-    🛠 **2023** — Released my own *Garry’s Mod* game modification, featuring an unprecedented level of depth in its story campaign.  
+    🎮 **2019–2020** — Launched popular Roleplay servers in Garry’s Mod themed around **SCP** and **Metro 2033**.  
+    For the first time among servers of this kind, I introduced well-developed story missions and unique ways for players to interact with the game world.  
 
-    📺 **Demo video:** [YouTube](https://www.youtube.com/watch?v=mrttOcG5H3E)  
-
+    📺 **Example:** [YouTube](https://www.youtube.com/watch?v=2P0QRoOSyZY) *(unfortunately, no recordings remain from the SCP-RP server).*  
 
     [SOCIAL LINKS]  
     
@@ -134,9 +135,9 @@ export async function POST(request: NextRequest) {
     store: true
   };
 
-  // if (previousResponseId) {
-  //   context.previous_response_id = previousResponseId;
-  // };
+  if (previousResponseId) {
+    context.previous_response_id = previousResponseId;
+  };
 
   const response: OpenAI.Responses.Response = await openai.responses.create(context);
 

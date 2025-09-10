@@ -1,5 +1,7 @@
 'use client';
 
+import { motion } from "framer-motion";
+
 import { useState } from "react";
 
 import Chat from "@/components/Chat";
@@ -8,12 +10,32 @@ export default function Home() {
   const [generating, setGenerating] = useState(false)
   const [initialized, setInitialized] = useState(false)
 
+  const text = "Welcome to LapshinGPT"
+
+  const renderMotionText = (text: string) => {
+    return text.split("").map((char, i) => (
+      <motion.span
+        key={i}
+        className="inline-block cursor-pointer"
+        whileHover={{
+          y: -8, // bump up
+          scale: 1.2, // little grow
+          transition: { type: "spring", stiffness: 400, damping: 10 },
+        }}
+      >
+        {char === " " ? "\u00A0" : char}
+      </motion.span>
+    ))
+  }
+
   return (
     <div className="h-screen flex flex-col items-center">
       <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-5 ${initialized ? "pointer-events-none" : ""}`}>
         <div className={`flex transition duration-500 flex-col items-center gap-2 ${initialized ? "--hidden" : ""}`}>
-          <span className="text-4xl font-bold">Welcome to LapshinGPT</span>
-          <span className="text-lg opacity-50 font-medium">The most advanced AI that knows everything about only one human</span>
+          <span className="text-4xl font-bold">
+            {renderMotionText("Welcome to Lapshin GPT")}
+          </span>
+          <span className="text-lg opacity-50 font-medium">{renderMotionText("The most advanced AI that knows everything about only one human")}</span>
         </div>
       </div>
 

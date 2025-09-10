@@ -3,7 +3,7 @@ import { Manrope } from "next/font/google";
 import "./globals.css";
 
 const manropeFont = Manrope({
-  variable: "--font-manrope",
+  variable: "--main-font",
   subsets: ["latin"],
 });
 

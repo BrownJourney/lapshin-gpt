@@ -68,6 +68,8 @@ export default function Chat({ setInitialized, setGenerating, generating }: { se
         return `<a href="${url}"${extra}>${text}</a>`;
       });
 
+      text = text.replace(/---/g, `<div class="divider"></div>`)
+
 
       addChatBubble(text, "assistant");
       setGenerating(false);

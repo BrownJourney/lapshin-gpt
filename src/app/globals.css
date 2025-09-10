@@ -12,7 +12,7 @@
 body {
   background: #252525;
   color: #FFF;
-  font-family: var(--font-manrope);
+  font-family: var(--main-font);
 }
 
 .sphere {
@@ -56,18 +56,18 @@ body {
 
 @keyframes sphere-pulse {
   0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.5;
   }
 
   50% {
-    opacity: 0.5;
     transform: translate(-50%, -50%) scale(1);
+    opacity: 0.5;
   }
 
   100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.5;
   }
 }
 
@@ -137,38 +137,33 @@ a {
   }
 }
 
+/* HTML: <div class="loader"></div> */
 .loader {
   width: 20px;
-  aspect-ratio: 1;
-  display: grid;
-  opacity: 0;
-  transform: translateX(-10%);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-.loader::before,
-.loader::after {    
-  content:"";
-  grid-area: 1/1;
-  --c:no-repeat radial-gradient(farthest-side, #2491d9 92%,#0000);
+  aspect-ratio: 1.154;
+  --_g: no-repeat radial-gradient(farthest-side,#2491d9 90%,#0000);
   background: 
-    var(--c) 50%  0, 
-    var(--c) 50%  100%, 
-    var(--c) 100% 50%, 
-    var(--c) 0    50%;
-  background-size: 4px 4px;
-  animation: l12 1s infinite;
+    var(--_g) 50%  0,
+    var(--_g) 0    100%,
+    var(--_g) 100% 100%;
+  background-size: 35% calc(35%*1.154);
+  animation: l16 1s infinite;
+  opacity: 0;
+  transform: translateY(-20%);
+  transition: all 0.25s ease;
 }
-.loader::before {
-  margin: 4px;
-  background-size: 3px 3px;
-  animation-timing-function: linear;
+@keyframes l16{ 
+    50%,100% {background-position: 100% 100%,50% 0,0 100%} 
 }
 
 .loader.--loading {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(0);
 }
 
-@keyframes l12 { 
-  100%{transform: rotate(.5turn)}
+.divider {
+  width: 100%;
+  height: 2px;
+  border-bottom: 2px dashed #fff;
+  opacity: 0.1;
 }
