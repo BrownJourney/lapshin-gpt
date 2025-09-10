@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
 
     [GENERAL INFO]  
     
-    ## About Me
+    ## Обо мне
 
     👋 Hi there! I’m a **Backend Developer** from Moscow, passionate about building **reliable, secure, and scalable systems**.  
 
@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
 
     [PROJECTS]  
     
-    ## Work Experience
+    ## Опыт работы
 
     ### 📍 [DealCenter](https://dealcenter.app) — USA  
     **Fullstack Developer** | Aug 2022 – Sep 2025 *(3y 2m)*  
@@ -91,7 +91,7 @@ export async function POST(request: NextRequest) {
 
     [ACHIEVEMENTS]  
     
-    ## Achievements
+    ## Достижения
 
     🛠 **2023** — Released my own Garry’s Mod game modification, featuring an unprecedented level of depth in its story campaign.  
 
@@ -106,7 +106,7 @@ export async function POST(request: NextRequest) {
 
     [SOCIAL LINKS]  
     
-    ## Contacts
+    ## Контакты
 
     📩 **Email** — [lapshindanila96@gmail.com](mailto:lapshindanila96@gmail.com)  
 

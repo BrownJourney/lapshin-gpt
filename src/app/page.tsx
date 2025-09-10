@@ -30,12 +30,12 @@ export default function Home() {
 
   return (
     <div className="h-screen flex flex-col items-center">
-      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-5 ${initialized ? "pointer-events-none" : ""}`}>
-        <div className={`flex transition duration-500 flex-col items-center gap-2 ${initialized ? "--hidden" : ""}`}>
-          <span className="text-4xl font-bold">
+      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-5 w-full ${initialized ? "pointer-events-none" : ""}`}>
+        <div className={`flex transition px-4 duration-500 flex-col items-center gap-2 ${initialized ? "--hidden" : ""}`}>
+          <span className="text-center text-2xl xl:text-4xl font-bold">
             {renderMotionText("Welcome to Lapshin GPT")}
           </span>
-          <span className="text-lg opacity-50 font-medium">{renderMotionText("The most advanced AI that knows everything about only one human")}</span>
+          <span className="text-center text-sm xl:text-lg opacity-50 font-medium">The most advanced AI that knows everything about only one human</span>
         </div>
       </div>
 

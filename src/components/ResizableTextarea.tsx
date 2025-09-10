@@ -35,7 +35,7 @@ export default function ResizableTextarea({ ref, value, onChange }: { ref: any, 
       ref={ref}
       id="promt"
       rows={1}
-      placeholder="Enter promt..."
+      placeholder="Введите запрос..."
       className="scrollbar-hide w-9/10 p-5 resize-none bg-transparent hover:border-transparent hover:outline-none focus:outline-none"
       />
   )

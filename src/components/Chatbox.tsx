@@ -60,20 +60,20 @@ export default function Chatbox({ sendPromt, generating }: { sendPromt: any, gen
 
   const recommendedPromts = [
     {
-      name: "General information",
-      text: "Tell me about yourself",
+      name: "Общая информация",
+      text: "Расскажи о себе",
     },
     {
-      name: "Projects",
-      text: "I want to learn about your projects",
+      name: "Опыт работы",
+      text: "Я хочу узнать о твоем опыте работы",
     },
     {
-      name: "Achievements",
-      text: "Let me know about your achievements",
+      name: "Достижения",
+      text: "Какие у тебя есть личные достижения?",
     },
     {
-      name: "Social links",
-      text: "What about your social links?",
+      name: "Социальные сети",
+      text: "Дай мне ссылки на свои соц.сети",
     },
   ];
 
@@ -82,7 +82,7 @@ export default function Chatbox({ sendPromt, generating }: { sendPromt: any, gen
       <div className="flex flex-col gap-2 pt-5">
         <span className="text-sm uppercase opacity-50 font-medium">recommended promts</span>
 
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row gap-2 justify-between flex-wrap scroll">
           {recommendedPromts.map(promt => {
             return (
               <GuidedPromt key={promt.name} text={promt.name} promt={promt.text} sendPromt={sendPromt} />
@@ -102,7 +102,7 @@ export default function Chatbox({ sendPromt, generating }: { sendPromt: any, gen
         </div>
       </div>
 
-      <span className="text-sm text-center font-normal opacity-50">LapshinGPT can’t make mistakes. All information is correct</span>
+      <span className="text-sm text-center font-normal opacity-50">LapshinGPT не может допускать ошибки. Никогда.</span>
     </div>
   )
 }
