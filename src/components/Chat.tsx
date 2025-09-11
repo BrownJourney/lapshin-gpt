@@ -83,12 +83,12 @@ export default function Chat({ setInitialized, setGenerating, generating }: { se
 
   useEffect(() => {
     chatRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [history])
+  }, [history]);
 
   return (
-    <div className="flex flex-col items-center justify-between h-screen p-4 lg:p-10 z-2 w-full sm:w-9/10 xl:w-2/4">
+    <div className="flex flex-col items-center justify-between h-screen p-4 lg:p-10 z-2 w-full sm:w-9/10 xl:w-2/4 chat-anim">
       <ChatHistory chatRef={chatRef} history={history} generating={animLoading} />
       <Chatbox generating={generating} sendPromt={sendPromt} />
     </div>
-  )
+  );
 }

@@ -25,7 +25,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0.5;
-  animation: sphere-grow 1s ease;
+  animation: sphere-grow 3s ease;
   transition: top 1s ease, opacity 1s ease;
 }
 
@@ -173,4 +173,54 @@ a {
   height: 2px;
   border-bottom: 2px dashed #fff;
   opacity: 0.1;
+}
+
+.chat-anim {
+  animation: chat-appear 0.5s ease;
+}
+
+.title-anim {
+  opacity: 0;
+  animation: title-appear 0.5s ease forwards 0.5s;
+}
+
+.subtitle-anim {
+  opacity: 0;
+  animation: subtitle-appear 0.5s ease forwards 2s;
+}
+
+@keyframes chat-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(5%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes title-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes subtitle-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+
+  100% {
+    opacity: 0.5;
+    transform: translateY(0%);
+  }
 }
