@@ -2,7 +2,7 @@
 
 import { useEffect } from "react"
 
-export default function ResizableTextarea({ ref, value, onChange, onInput }: { ref: React.RefObject<HTMLTextAreaElement | null>, value: string, onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void, onInput: (e: React.ChangeEvent<HTMLTextAreaElement>) => void }) {
+export default function ResizableTextarea({ ref, value, onChange, onInput, onKeyDown }: { ref: React.RefObject<HTMLTextAreaElement | null>, value: string, onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void, onInput: (e: React.ChangeEvent<HTMLTextAreaElement>) => void, onKeyDown: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void }) {
   useEffect(() => {
     const minRows = 1,
       maxRows = 5;
@@ -32,6 +32,7 @@ export default function ResizableTextarea({ ref, value, onChange, onInput }: { r
     <textarea
       onChange={onChange}
       onInput={onInput}
+      onKeyDown={onKeyDown}
       value={value}
       ref={ref}
       id="promt"

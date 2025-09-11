@@ -14,6 +14,7 @@ export default function Chatbox({ sendPromt, generating }: { sendPromt: (promtTe
   const [text, setText] = useState<string>('');
   const outerRef = useRef<HTMLDivElement | null>(null);   // animated wrapper
   const innerRef = useRef<HTMLTextAreaElement | null>(null);   // auto-sized content
+  const buttonRef = useRef<HTMLDivElement | null>(null) // send button
 
   useEffect(() => {
     const outer: HTMLDivElement | null = outerRef.current;
@@ -59,8 +60,16 @@ export default function Chatbox({ sendPromt, generating }: { sendPromt: (promtTe
 
   const promtWrapper = (): void => {
     if (generating) return;
+    if (!text) return;
     sendPromt(text);
     setText("");
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>): void => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      buttonRef.current?.click(); // simulate button click
+    }
   };
 
   const recommendedPromts: Promts[] = [
@@ -102,9 +111,10 @@ export default function Chatbox({ sendPromt, generating }: { sendPromt: (promtTe
           value={text}
           onChange={(e : React.ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)}
           onInput={(e : React.ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
         <div className="absolute bottom-0 lg:bottom-2 right-2 flex flex-row gap-2">
-            <div className={`transition duration-200 cursor-pointer bg-[url('../../public/send.svg')] opacity-50 rounded-full p-6 bg-center bg-no-repeat bg-size-[20px] hover:bg-[#474747] hover:opacity-100 ${text.length > 0 ? "--active" : "--inactive"}`} onClick={promtWrapper}></div>
+            <div ref={buttonRef} className={`transition duration-200 cursor-pointer bg-[url('../../public/send.svg')] opacity-50 rounded-full p-6 bg-center bg-no-repeat bg-size-[20px] hover:bg-[#474747] hover:opacity-100 ${text.length > 0 ? "--active" : "--inactive"}`} onClick={promtWrapper}></div>
         </div>
       </div>
 

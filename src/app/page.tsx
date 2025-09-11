@@ -36,7 +36,7 @@ export default function Home() {
   useEffect(() => {
     setTimeout(() => {
       setAnimating(false)
-    }, 5000)
+    }, 3000)
   })
 
   return (
@@ -55,7 +55,7 @@ export default function Home() {
         <div className={`sphere --invalid --thinking ${generating ? "--generating" : ""}`}></div>
       </div>
 
-      {!animating && (<Chat setInitialized={setInitialized} initialized={initialized} generating={generating} setGenerating={setGenerating} />)}
+      {!animating && (<Chat setInitialized={setInitialized} generating={generating} setGenerating={setGenerating} />)}
     </div>
   );
 }
