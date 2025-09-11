@@ -36,7 +36,7 @@ export default function ResizableTextarea({ ref, value, onChange }: { ref: React
       id="promt"
       rows={1}
       placeholder="Введите запрос..."
-      className="scrollbar-hide w-9/10 p-5 resize-none bg-transparent hover:border-transparent hover:outline-none focus:outline-none"
+      className="scrollbar-hide w-9/10 p-3 lg:p-5 resize-none bg-transparent hover:border-transparent hover:outline-none focus:outline-none"
       />
   )
 }

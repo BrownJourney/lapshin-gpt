@@ -87,7 +87,7 @@ export default function Chatbox({ sendPromt, generating }: { sendPromt: (promtTe
       <div className="flex flex-col gap-2 pt-5">
         <span className="text-sm uppercase opacity-50 font-medium">recommended promts</span>
 
-        <div className="flex flex-row gap-2 justify-between flex-wrap scroll">
+        <div className="flex flex-row gap-2 justify-between overflow-x-auto lg:overflow-hidden lg:flex-wrap scroll">
           {recommendedPromts.map(promt => {
             return (
               <GuidedPromt key={promt.name} text={promt.name} promt={promt.text} sendPromt={sendPromt} />
@@ -102,7 +102,7 @@ export default function Chatbox({ sendPromt, generating }: { sendPromt: (promtTe
           value={text}
           onChange={(e : React.ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)}
         />
-        <div className="absolute bottom-2 right-2 flex flex-row gap-2">
+        <div className="absolute bottom-0 lg:bottom-2 right-2 flex flex-row gap-2">
             <div className={`transition duration-200 cursor-pointer bg-[url('../../public/send.svg')] opacity-50 rounded-full p-6 bg-center bg-no-repeat bg-size-[20px] hover:bg-[#474747] hover:opacity-100 ${text.length > 0 ? "--active" : "--inactive"}`} onClick={promtWrapper}></div>
         </div>
       </div>
