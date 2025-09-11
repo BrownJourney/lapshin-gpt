@@ -44,6 +44,13 @@ body {
   animation: sphere-pulse 2s ease infinite 1s;
 }
 
+@media only screen and (max-width: 600px) {
+  .sphere {
+    width: 70vw;
+    height: 70vw;
+  }
+}
+
 @keyframes sphere-grow {
   0% {
     transform: translate(-50%, -50%) scale(0);

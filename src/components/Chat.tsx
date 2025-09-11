@@ -81,7 +81,7 @@ export default function Chat({ setInitialized, setGenerating, generating }: { se
   }, [history])
 
   return (
-    <div className="flex flex-col items-center justify-between h-screen p-10 z-2 w-full sm:w-9/10 xl:w-2/4">
+    <div className="flex flex-col items-center justify-between h-screen p-4 lg:p-10 z-2 w-full sm:w-9/10 xl:w-2/4">
       <ChatHistory chatRef={chatRef} history={history} setHistory={setHistory} generating={animLoading} />
       <Chatbox generating={generating} sendPromt={sendPromt} />
     </div>
