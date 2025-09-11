@@ -54,7 +54,7 @@ export default function Chat({ setInitialized, setGenerating, generating }: { se
       text = text.replaceAll("$", "&dollar;");
       text = text.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
       text = text.replace(/\*(.+?)\*/g, '<i>$1</i>');
-      text = text.replace(/```[^\n]*\n([\s\S]*?)```/g, function (_, codeContent) {
+      text = text.replace(/```[^\n]*\n([\s\S]*?)```/g, function (_: void, codeContent: string) {
           codeContent = codeContent.replaceAll("<", "&lt;");
           codeContent = codeContent.replaceAll(">", "&gt;");
           return `<pre><code>${codeContent.trim()}</code></pre>`;
@@ -62,7 +62,7 @@ export default function Chat({ setInitialized, setGenerating, generating }: { se
       text = text.replace(/`([^`]+?)`/g, '<code>$1</code>');
       text = text.replace(/^## (.*)/gm, '<h1>$1</h1>');
       text = text.replace(/^### (.*)/gm, '<h2>$1</h2>');
-      text = text.replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:)[^\s)]+)\)/g, (_m, text, url) => {
+      text = text.replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:)[^\s)]+)\)/g, (_m: void, text: string, url: string) => {
         const isHttp = /^https?:\/\//i.test(url);
         const extra = isHttp ? ' target="_blank" rel="noopener noreferrer"' : '';
         return `<a href="${url}"${extra}>${text}</a>`;
