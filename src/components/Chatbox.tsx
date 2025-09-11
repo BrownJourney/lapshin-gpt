@@ -100,6 +100,7 @@ export default function Chatbox({ sendPromt, generating }: { sendPromt: (promtTe
         <ResizableTextarea
           ref={innerRef}
           value={text}
+          onChange={(e : React.ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)}
           onInput={(e : React.ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)}
         />
         <div className="absolute bottom-0 lg:bottom-2 right-2 flex flex-row gap-2">
