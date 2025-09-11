@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LapshinGPT — AI Portfolio
 
-## Getting Started
+A lightweight, fast, and elegant personal AI portfolio and chat playground built with **Next.js**, **TypeScript**, and **Tailwind CSS**.  
+LapshinGPT showcases projects, skills, and an interactive AI chat with small UX touches (animations, keyboard shortcuts, and thoughtful markdown rendering).
 
-First, run the development server:
+---
 
+## ✨ Features
+
+- **AI Chat Interface**
+  - Prompt box with Enter-to-send (and Shift+Enter for newline)
+  - Optional “guided prompts” chips
+  - Markdown rendering with HTML escaping for safety
+  - Keeps `previousResponseId` to link replies in a session
+
+- **Polished UI/UX**
+  - Tailwind CSS for responsive layout
+  - Framer-like micro-animations for headings/letters
+  - Dark, minimal aesthetic by default
+
+- **Modern Web Stack**
+  - Next.js App Router
+  - TypeScript everywhere
+  - ESLint already wired
+
+---
+
+## 🧱 Tech Stack
+
+- **Framework:** Next.js (App Router)
+- **Language:** TypeScript
+- **UI:** Tailwind CSS
+- **Animation:** Framer Motion (optional in components)
+- **API:** `/api/chat` route for model calls (plug in your provider)
+
+---
+
+## 🚀 Quick Start
+
+### 1) Clone & install
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+git clone https://github.com/BrownJourney/lapshin-gpt.git
+cd lapshin-gpt
+npm install
