@@ -49,7 +49,8 @@ export default function Chat({ setInitialized, setGenerating, generating }: { se
       })
     }).then(res => res.json());
 
-    setPrevResponseId(res.previousResponseId);
+    const retrievedPreviousResponseId: APIResponse["previousResponseId"] = res.previousResponseId;
+    setPrevResponseId(retrievedPreviousResponseId === "none" ? prevResponseId : retrievedPreviousResponseId);
     setAnimLoading(false);
 
     setTimeout(() => {

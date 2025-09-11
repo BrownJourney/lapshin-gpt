@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
 
     ---
 
-    ### 📍 [EasyCarInspection](https://easycarinspection.com) — Фриланс-проект, США  
+    ### 📍 [EasyCarInspection](https://easycarinspection.com) — Проектная работа, США
     **Fullstack-разработчик** | Май 2024 – Сен 2024 *(5 мес.)*  
 
     - Создал **веб-платформу с нуля** для генерации отчётов по техосмотру, необходимых для Uber, Lyft и Turo.  
@@ -122,7 +122,13 @@ export async function POST(request: NextRequest) {
 
     💻 **GitHub** — [github.com/BrownJourney](https://github.com/BrownJourney)  
 
-    🔗 **LinkedIn** — [linkedin.com/in/brojou](https://www.linkedin.com/in/brojou/)  
+    🔗 **LinkedIn** — [linkedin.com/in/brojou](https://www.linkedin.com/in/brojou/)
+
+    [RESUME]
+
+    ## Резюме
+
+    Вы можете скачать мое резюме в PDF формате по [этой ссылке](https://lapshingpt.ru/resume.pdf)
   `;
 
   const context: OpenAI.Responses.ResponseCreateParams = {
@@ -161,7 +167,8 @@ export async function POST(request: NextRequest) {
   } catch(err) {
     console.log(err);
     return NextResponse.json({
-      error: "Unexpected error on the server! Please try again later"
+      response: "Unexpected error on the server! Please try again later",
+      previousResponseId: "none"
     }, {
       status: 502
     })
