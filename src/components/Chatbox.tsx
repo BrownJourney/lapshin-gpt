@@ -85,7 +85,7 @@ export default function Chatbox({ sendPromt, generating }: { sendPromt: (promtTe
   return (
     <div className="flex flex-col gap-5 w-full">
       <div className="flex flex-col gap-2 pt-5">
-        <span className="text-sm uppercase opacity-50 font-medium">recommended promts</span>
+        <span className="text-sm uppercase opacity-50 font-medium">рекомендуемые запросы</span>
 
         <div className="flex flex-row gap-2 justify-between overflow-x-auto lg:overflow-hidden lg:flex-wrap scroll">
           {recommendedPromts.map(promt => {

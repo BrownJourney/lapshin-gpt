@@ -62,7 +62,7 @@ export default function Chat({ setInitialized, setGenerating, generating }: { se
       text = text.replace(/```[^\n]*\n([\s\S]*?)```/g, (_: string, codeContent: string): string => {
           codeContent = codeContent.replaceAll("<", "&lt;");
           codeContent = codeContent.replaceAll(">", "&gt;");
-          return `<pre><code>${codeContent.trim()}</code></pre>`;
+          return codeContent.trim();
       })
       text = text.replace(/`([^`]+?)`/g, '<code>$1</code>');
       text = text.replace(/^## (.*)/gm, '<h1>$1</h1>');
