@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react"
 
-export default function ResizableTextarea({ ref, value, onChange }: { ref: any, value: string, onChange: any }) {
+export default function ResizableTextarea({ ref, value, onChange }: { ref: React.RefObject<HTMLTextAreaElement>, value: string, onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => string }) {
   useEffect(() => {
     const minRows = 1,
       maxRows = 5;

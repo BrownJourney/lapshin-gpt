@@ -7,7 +7,7 @@ export default function GuidedPromt({
 }: {
     text: string,
     promt: string,
-    sendPromt: React.Dispatch<React.SetStateAction<string>>
+    sendPromt: (promtText: string) => Promise<void>
   }) {
   return (
     <div

@@ -7,13 +7,18 @@ import ChatHistory from "./ChatHistory";
 
 import { ChatMessage } from "@/types";
 
-export default function Chat({ setInitialized, setGenerating, generating }: { setInitialized: any, setGenerating: any, generating: boolean }) {
+type APIResponse = {
+  previousResponseId: string,
+  response: string
+};
+
+export default function Chat({ setInitialized, setGenerating, generating }: { setInitialized: React.Dispatch<React.SetStateAction<boolean>>, setGenerating: React.Dispatch<React.SetStateAction<boolean>>, generating: boolean }) {
   const [history, setHistory] = useState<ChatMessage[]>([]);
   const [animLoading, setAnimLoading] = useState<boolean>(false);
   const [prevResponseId, setPrevResponseId] = useState<string>("");
   const chatRef = useRef<HTMLDivElement | null>(null);
 
-  const addChatBubble = (text: ChatMessage["message"], role: ChatMessage["role"]) => {
+  const addChatBubble: void = (text: ChatMessage["message"], role: ChatMessage["role"]) => {
     setHistory(prev => [
       ...prev,
       {
@@ -23,7 +28,7 @@ export default function Chat({ setInitialized, setGenerating, generating }: { se
     ]);
   };
   
-  const sendPromt = async (promtText: string) => {
+  const sendPromt = async (promtText: string): Promise<void> => {
     if (generating) return;
 
     setInitialized(true);
@@ -32,9 +37,9 @@ export default function Chat({ setInitialized, setGenerating, generating }: { se
 
     addChatBubble(promtText, "user");
 
-    const endpoint = "/api/chat/"
+    const endpoint = "/api/chat/";
 
-    const res = await fetch(endpoint, {
+    const res: APIResponse = await fetch(endpoint, {
       method: "POST",
       body: JSON.stringify({
         payload: {
@@ -48,7 +53,7 @@ export default function Chat({ setInitialized, setGenerating, generating }: { se
     setAnimLoading(false);
 
     setTimeout(() => {
-      let text = res.response
+      let text: string = res.response
       text = text.replaceAll("<", "&lt;");
       text = text.replaceAll(">", "&gt;");
       text = text.replaceAll("$", "&dollar;");

@@ -7,10 +7,8 @@ import { useState } from "react";
 import Chat from "@/components/Chat";
 
 export default function Home() {
-  const [generating, setGenerating] = useState(false)
-  const [initialized, setInitialized] = useState(false)
-
-  const text = "Welcome to LapshinGPT"
+  const [generating, setGenerating] = useState<boolean>(false)
+  const [initialized, setInitialized] = useState<boolean>(false)
 
   const renderMotionText = (text: string) => {
     return text.split("").map((char, i) => (

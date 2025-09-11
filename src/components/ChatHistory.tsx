@@ -2,7 +2,7 @@
 
 import { ChatMessage } from "@/types";
 
-export default function ChatHistory({ history, setHistory, generating, chatRef }: { history: ChatMessage[], setHistory: any, generating: boolean, chatRef: any }) {
+export default function ChatHistory({ history, setHistory, generating, chatRef }: { history: ChatMessage[], setHistory: React.Dispatch<React.SetStateAction<ChatMessage[]>>, generating: boolean, chatRef: React.RefObject<HTMLDivElement> }) {
   return (
     <div className="flex flex-col gap-4 overflow-scroll pt-20 w-full pb-10 scrollbar-hide">
       {history.map((chatMsg: ChatMessage, index: number) => {

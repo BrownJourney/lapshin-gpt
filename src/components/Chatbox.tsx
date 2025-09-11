@@ -5,26 +5,31 @@ import { useState, useEffect, useRef } from "react";
 import ResizableTextarea from "./ResizableTextarea"
 import GuidedPromt from "./GuidedPromt"
 
-export default function Chatbox({ sendPromt, generating }: { sendPromt: any, generating: boolean }) {
-  const [text, setText] = useState('');
+type Promts = {
+  name: string,
+  text: string
+}
+
+export default function Chatbox({ sendPromt, generating }: { sendPromt: (promtText: string) => Promise<void>, generating: boolean }) {
+  const [text, setText] = useState<string>('');
   const outerRef = useRef<HTMLDivElement | null>(null);   // animated wrapper
   const innerRef = useRef<HTMLDivElement | null>(null);   // auto-sized content
 
   useEffect(() => {
-    const outer = outerRef.current;
-    const inner = innerRef.current;
+    const outer: HTMLDivElement = outerRef.current;
+    const inner: HTMLDivElement = innerRef.current;
     if (!outer || !inner) return;
 
-    const apply = () => {
+    const apply = (): void => {
       // read before any writes
-      const prevBottom = outer.getBoundingClientRect().bottom;
+      const prevBottom: number = outer.getBoundingClientRect().bottom;
 
       // measure target height (inner content)
-      const h = inner.getBoundingClientRect().height;
+      const h: number = inner.getBoundingClientRect().height;
 
       // include outer padding + borders so we don’t under/overshoot
-      const cs = getComputedStyle(outer);
-      const extra =
+      const cs: CSSStyleDeclaration = getComputedStyle(outer);
+      const extra: number =
         parseFloat(cs.paddingTop) +
         parseFloat(cs.paddingBottom) +
         parseFloat(cs.borderTopWidth) +
@@ -34,8 +39,8 @@ export default function Chatbox({ sendPromt, generating }: { sendPromt: any, gen
       outer.style.height = `${h + extra}px`;
 
       // read after write and compensate scroll to prevent jump
-      const nextBottom = outer.getBoundingClientRect().bottom;
-      const delta = nextBottom - prevBottom;
+      const nextBottom: number = outer.getBoundingClientRect().bottom;
+      const delta: number = nextBottom - prevBottom;
       if (delta !== 0) window.scrollBy(0, delta);
     };
 
@@ -52,13 +57,13 @@ export default function Chatbox({ sendPromt, generating }: { sendPromt: any, gen
     return () => ro.disconnect();
   }, []);
 
-  const promtWrapper = () => {
+  const promtWrapper = (): void => {
     if (generating) return;
     sendPromt(text);
     setText("");
   };
 
-  const recommendedPromts = [
+  const recommendedPromts: Promts = [
     {
       name: "Общая информация",
       text: "Расскажи о себе",

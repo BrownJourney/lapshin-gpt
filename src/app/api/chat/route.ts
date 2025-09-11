@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { v4 as uuidv4 } from "uuid";
-
 import OpenAI from "openai";
 
 const openai = new OpenAI({
