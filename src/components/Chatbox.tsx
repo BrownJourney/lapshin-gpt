@@ -100,7 +100,7 @@ export default function Chatbox({ sendPromt, generating }: { sendPromt: (promtTe
         <ResizableTextarea
           ref={innerRef}
           value={text}
-          onChange={(e : React.ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)}
+          onInput={(e : React.ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)}
         />
         <div className="absolute bottom-0 lg:bottom-2 right-2 flex flex-row gap-2">
             <div className={`transition duration-200 cursor-pointer bg-[url('../../public/send.svg')] opacity-50 rounded-full p-6 bg-center bg-no-repeat bg-size-[20px] hover:bg-[#474747] hover:opacity-100 ${text.length > 0 ? "--active" : "--inactive"}`} onClick={promtWrapper}></div>
