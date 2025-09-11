@@ -32,12 +32,6 @@ LapshinGPT showcases projects, skills, and an interactive AI chat with small UX 
 - **UI:** Tailwind CSS
 - **Animation:** Framer Motion (optional in components)
 - **API:** `/api/chat` route for model calls (plug in your provider)
-
----
-
-## 🚀 Quick Start
-
-### 1) Clone & install
 ```bash
 git clone https://github.com/BrownJourney/lapshin-gpt.git
 cd lapshin-gpt
