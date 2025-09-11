@@ -13,11 +13,11 @@ type Promts = {
 export default function Chatbox({ sendPromt, generating }: { sendPromt: (promtText: string) => Promise<void>, generating: boolean }) {
   const [text, setText] = useState<string>('');
   const outerRef = useRef<HTMLDivElement | null>(null);   // animated wrapper
-  const innerRef = useRef<HTMLDivElement | null>(null);   // auto-sized content
+  const innerRef = useRef<HTMLTextAreaElement | null>(null);   // auto-sized content
 
   useEffect(() => {
-    const outer: HTMLDivElement = outerRef.current;
-    const inner: HTMLDivElement = innerRef.current;
+    const outer: HTMLDivElement | null = outerRef.current;
+    const inner: HTMLTextAreaElement | null = innerRef.current;
     if (!outer || !inner) return;
 
     const apply = (): void => {
@@ -63,7 +63,7 @@ export default function Chatbox({ sendPromt, generating }: { sendPromt: (promtTe
     setText("");
   };
 
-  const recommendedPromts: Promts = [
+  const recommendedPromts: Promts[] = [
     {
       name: "Общая информация",
       text: "Расскажи о себе",

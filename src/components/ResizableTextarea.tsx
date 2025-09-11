@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef } from "react"
+import { useEffect } from "react"
 
-export default function ResizableTextarea({ ref, value, onChange }: { ref: React.RefObject<HTMLTextAreaElement>, value: string, onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => string }) {
+export default function ResizableTextarea({ ref, value, onChange }: { ref: React.RefObject<HTMLTextAreaElement | null>, value: string, onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void }) {
   useEffect(() => {
     const minRows = 1,
       maxRows = 5;
@@ -26,7 +26,7 @@ export default function ResizableTextarea({ ref, value, onChange }: { ref: React
         + parseFloat(cs.borderBottomWidth);
       if (el.scrollHeight > max) el.style.height = `${max}px`;
     }
-  }, [value])
+  }, [ref, value])
 
   return (
     <textarea

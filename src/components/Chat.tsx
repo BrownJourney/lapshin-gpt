@@ -18,7 +18,7 @@ export default function Chat({ setInitialized, setGenerating, generating }: { se
   const [prevResponseId, setPrevResponseId] = useState<string>("");
   const chatRef = useRef<HTMLDivElement | null>(null);
 
-  const addChatBubble: void = (text: ChatMessage["message"], role: ChatMessage["role"]) => {
+  const addChatBubble = (text: ChatMessage["message"], role: ChatMessage["role"]): void => {
     setHistory(prev => [
       ...prev,
       {
@@ -59,7 +59,7 @@ export default function Chat({ setInitialized, setGenerating, generating }: { se
       text = text.replaceAll("$", "&dollar;");
       text = text.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
       text = text.replace(/\*(.+?)\*/g, '<i>$1</i>');
-      text = text.replace(/```[^\n]*\n([\s\S]*?)```/g, function (_: void, codeContent: string) {
+      text = text.replace(/```[^\n]*\n([\s\S]*?)```/g, (_: string, codeContent: string): string => {
           codeContent = codeContent.replaceAll("<", "&lt;");
           codeContent = codeContent.replaceAll(">", "&gt;");
           return `<pre><code>${codeContent.trim()}</code></pre>`;
@@ -67,7 +67,7 @@ export default function Chat({ setInitialized, setGenerating, generating }: { se
       text = text.replace(/`([^`]+?)`/g, '<code>$1</code>');
       text = text.replace(/^## (.*)/gm, '<h1>$1</h1>');
       text = text.replace(/^### (.*)/gm, '<h2>$1</h2>');
-      text = text.replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:)[^\s)]+)\)/g, (_m: void, text: string, url: string) => {
+      text = text.replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:)[^\s)]+)\)/g, (_m: string, text: string, url: string): string => {
         const isHttp = /^https?:\/\//i.test(url);
         const extra = isHttp ? ' target="_blank" rel="noopener noreferrer"' : '';
         return `<a href="${url}"${extra}>${text}</a>`;
@@ -87,7 +87,7 @@ export default function Chat({ setInitialized, setGenerating, generating }: { se
 
   return (
     <div className="flex flex-col items-center justify-between h-screen p-4 lg:p-10 z-2 w-full sm:w-9/10 xl:w-2/4">
-      <ChatHistory chatRef={chatRef} history={history} setHistory={setHistory} generating={animLoading} />
+      <ChatHistory chatRef={chatRef} history={history} generating={animLoading} />
       <Chatbox generating={generating} sendPromt={sendPromt} />
     </div>
   )
