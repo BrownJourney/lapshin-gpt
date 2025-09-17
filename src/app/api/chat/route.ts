@@ -132,11 +132,7 @@ export async function POST(request: NextRequest) {
   `;
 
   const context: OpenAI.Responses.ResponseCreateParams = {
-    model: "gpt-5-nano",
-    reasoning: {
-      effort: "minimal"
-    },
-
+    model: "gpt-4o-mini",
     input: [
         {
           role: "system",
