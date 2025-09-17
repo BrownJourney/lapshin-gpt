@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
     
     ## Опыт работы
 
-    ### 📍 [DealCenter](https://dealcenter.app) — США  
+    ### 📍 [DealCenter](https://dealcenter.app/docs/reader/about-dealcenter) — США  
     **Fullstack-разработчик** | Авг 2022 – Сен 2025 *(3 г. 2 мес.)*  
 
     - Разработал **кастомную CRM** для бизнеса по аренде подержанных автомобилей для автоматизации ежедневных операций.  
@@ -132,7 +132,10 @@ export async function POST(request: NextRequest) {
   `;
 
   const context: OpenAI.Responses.ResponseCreateParams = {
-    model: "gpt-4o",
+    model: "gpt-5-nano",
+    reasoning: {
+      effort: "minimal"
+    },
 
     input: [
         {
